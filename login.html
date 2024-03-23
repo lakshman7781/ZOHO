@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+</head>
+<body>
+    <div>
+        <h1>Login</h1>
+    </div>
+    <form id="loginForm">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="phone">Phone:</label><br>
+        <input type="text" id="phone" name="phone"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <pre id="jsonData"></pre>
+    <div id="message"></div>
+</body>
+<script>
+  let data;
+
+  document.getElementById('loginForm').addEventListener('submit', e => {
+    e.preventDefault();
+    validateUser();
+  });
+
+  function fetchData() {
+    let host = 'https://api.test.esamudaay.com';
+    let clusterId = 'df74530b-729c-4cc7-a4ad-fcaad5c3e3c8';
+    let url = `${host}/api/v1/clusters/${clusterId}/deliveryagents`;
+    let params = '?is_active=true';
+    let headers = {
+      'Authorization': "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5NCwiaXNfYWN0aXZlIjp0cnVlLCJpc19zdXNwZW5kZWQiOmZhbHNlLCJwaG9uZSI6Iis5MTgxMjM0NjI2MTAiLCJ0aGlyZF9wYXJ0eV9pZCI6IjVkNzMwMzc2LTcyZWQtNDc4Yy04ZDVlLTFhM2E2YWVlOTgxNSIsInByb2ZpbGUiOnsicm9sZSI6IlBST1ZJREVSIiwic3VzcGVuZGVkIjpmYWxzZX0sImV4cCI6MTcxMTI3MjMyOCwib3JpZ19pYXQiOjE3MDM0OTYzMjh9.ab7oIoPrq1qUuL9eh8sfAIS2Ig_IojrYsVNg6L1_3RU"
+    };
+
+    fetch(url + params, {
+      method: 'GET',
+      headers: headers
+    })
+    .then(response => response.json())
+    .then(jsonData => {
+      data = jsonData.results;
+      console.log(data);
+    })
+    .catch((error) => console.error('Error:', error));
+  }
+
+  function validateUser() {
+    let name = document.getElementById('name').value;
+    let phone = document.getElementById('phone').value;
+    let userFound = data.find(user => user.name === name && user.phone === phone);
+
+    if (userFound) {
+      document.getElementById('message').textContent = 'Login successful!';
+      window.location.href = 'sample.html';
+      // Here you can redirect to the next page
+    } else {
+      document.getElementById('message').textContent = 'Invalid credentials. Please try again.';
+    }
+  }
+
+  fetchData(); // Fetch data when the page loads
+</script>
+</html>

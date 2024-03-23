@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Address Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h2 {
+    text-align: center;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  label {
+    font-weight: bold;
+  }
+  input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .btn:hover {
+    background-color: #0056b3;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Address Form</h2>
+  <form id="addressForm" action=" " method="post">
+    <div class="form-group">
+      <label for="address_name">Address Name:</label>
+      <input type="text" id="address_name" name="address_name" value="">
+    </div>
+    <div class="form-group">
+      <label for="pretty_address">Pretty Address:</label>
+      <input type="text" id="pretty_address" name="pretty_address" value="">
+    </div>
+    <div class="form-group">
+      <label for="lat">Latitude:</label>
+      <input type="text" id="lat" name="lat" value="">
+    </div>
+    <div class="form-group">
+      <label for="lon">Longitude:</label>
+      <input type="text" id="lon" name="lon" value="">
+    </div>
+    <div class="form-group">
+      <label for="geo_addr_city">City:</label>
+      <input type="text" id="geo_addr_city" name="geo_addr_city" value="">
+    </div>
+    <div class="form-group">
+      <label for="geo_addr_house">House:</label>
+      <input type="text" id="geo_addr_house" name="geo_addr_house" value="">
+    </div>
+    <div class="form-group">
+      <label for="geo_addr_state">State:</label>
+      <input type="text" id="geo_addr_state" name="geo_addr_state" value="">
+    </div>
+    <div class="form-group">
+      <label for="geo_addr_pincode">Pincode:</label>
+      <input type="text" id="geo_addr_pincode" name="geo_addr_pincode" value="">
+    </div>
+    <div class="form-group">
+      <label for="geo_addr_landmark">Landmark:</label>
+      <input type="text" id="geo_addr_landmark" name="geo_addr_landmark" value="">
+    </div>
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</div>
+<div id="message">this is the data </div>
+
+
+</body>
+<script>
+  document.getElementById('addressForm').addEventListener('submit', e => {
+    e.preventDefault();
+  
+    const address_name = document.getElementById('address_name').value;
+    const pretty_address = document.getElementById('pretty_address').value;
+    const lat = parseFloat(document.getElementById('lat').value);
+    const lon = parseFloat(document.getElementById('lon').value);
+    const geo_addr_city = document.getElementById('geo_addr_city').value;
+    const geo_addr_house = document.getElementById('geo_addr_house').value;
+    const geo_addr_state = document.getElementById('geo_addr_state').value;
+    const geo_addr_pincode = document.getElementById('geo_addr_pincode').value;
+    const geo_addr_landmark = document.getElementById('geo_addr_landmark').value;
+  
+    const data = {
+      address_name,
+      pretty_address,
+      lat,
+      lon,
+      geo_addr: {
+        city: geo_addr_city,
+        house: geo_addr_house,
+        state: geo_addr_state,
+        pincode: geo_addr_pincode,
+        landmark: geo_addr_landmark
+      }
+    };
+  
+    let HOST = 'https://api.test.esamudaay.com';
+    let url=`${HOST}/api/v1/addresses/`;
+    let headers = {
+      'Authorization': "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5NCwiaXNfYWN0aXZlIjp0cnVlLCJpc19zdXNwZW5kZWQiOmZhbHNlLCJwaG9uZSI6Iis5MTgxMjM0NjI2MTAiLCJ0aGlyZF9wYXJ0eV9pZCI6IjVkNzMwMzc2LTcyZWQtNDc4Yy04ZDVlLTFhM2E2YWVlOTgxNSIsInByb2ZpbGUiOnsicm9sZSI6IlBST1ZJREVSIiwic3VzcGVuZGVkIjpmYWxzZX0sImV4cCI6MTcxMTI3MjMyOCwib3JpZ19pYXQiOjE3MDM0OTYzMjh9.ab7oIoPrq1qUuL9eh8sfAIS2Ig_IojrYsVNg6L1_3RU",
+      'Content-Type': 'application/json'
+    };
+  
+    fetch(url, {
+      method: 'POST',
+      headers:headers,
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(jsonData => {
+      console.log(jsonData);
+      document.getElementById('message').innerHTML = jsonData.address_id;
+
+      // Handle the response here, e.g., show a success message or redirect the user
+    })
+    .catch((error) => console.error('Error:', error));
+  });
+</script>
+</html>

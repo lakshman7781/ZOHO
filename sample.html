@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>Fetch API</h1>
+    </div>
+    <button id="fetchData">Fetch Data</button>
+    <pre id="jsonData"></pre>
+</body>
+<script>
+  document.getElementById('fetchData').addEventListener('click', fetchData);
+  
+  function fetchData() {
+    let host = 'https://api.test.esamudaay.com';
+    let clusterId = 'df74530b-729c-4cc7-a4ad-fcaad5c3e3c8';
+    let url = `${host}/api/v1/clusters/${clusterId}/deliveryagents`;
+    let params = '?is_active=true';
+    let headers = {
+      'Authorization': "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5NCwiaXNfYWN0aXZlIjp0cnVlLCJpc19zdXNwZW5kZWQiOmZhbHNlLCJwaG9uZSI6Iis5MTgxMjM0NjI2MTAiLCJ0aGlyZF9wYXJ0eV9pZCI6IjVkNzMwMzc2LTcyZWQtNDc4Yy04ZDVlLTFhM2E2YWVlOTgxNSIsInByb2ZpbGUiOnsicm9sZSI6IlBST1ZJREVSIiwic3VzcGVuZGVkIjpmYWxzZX0sImV4cCI6MTcxMTI3MjMyOCwib3JpZ19pYXQiOjE3MDM0OTYzMjh9.ab7oIoPrq1qUuL9eh8sfAIS2Ig_IojrYsVNg6L1_3RU"
+    };
+
+    fetch(url + params, {
+      method: 'GET',
+      headers: headers
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      document.getElementById('jsonData').textContent = JSON.stringify(data, null, 2);
+    })
+    .catch((error) => console.error('Error:', error));
+  }
+</script>
+</html>
