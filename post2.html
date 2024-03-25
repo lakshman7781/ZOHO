@@ -1,102 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Details Form</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-  }
-  .container {
-    max-width: 600px;
-    margin: 50px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  h2 {
-    text-align: center;
-  }
-  .form-group {
-    margin-bottom: 20px;
-  }
-  label {
-    font-weight: bold;
-  }
-  input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  .btn {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  .btn:hover {
-    background-color: #0056b3;
-  }
-</style>
-</head>
-<body>
+<html>
+  <head>
+    <title>Form Submission</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
 
-<div class="container">
-  <h2>Order Details Form</h2>
-  <form id="orderForm" action=" " method="post">
-    <div class="form-group">
-      <label for="business_id">Business ID:</label>
-      <input type="text" id="business_id" name="business_id">
-    </div>
-    <div class="form-group">
-      <label for="delivery_type">Delivery Type:</label>
-      <input type="text" id="delivery_type" name="delivery_type">
-    </div>
-    <div class="form-group">
-      <label for="delivery_address_id">Delivery Address ID:</label>
-      <input type="text" id="delivery_address_id" name="delivery_address_id">
-    </div>
-    <div class="form-group">
-      <label for="external_contact_name">Customer Name:</label>
-      <input type="text" id="external_contact_name" name="external_contact_name">
-    </div>
-    <div class="form-group">
-      <label for="external_contact_phone">Customer Phone:</label>
-      <input type="text" id="external_contact_phone" name="external_contact_phone">
-    </div>
-    <div class="form-group">
-      <label for="pickup_address_id">Pickup Address ID:</label>
-      <input type="text" id="pickup_address_id" name="pickup_address_id">
-    </div>
-    <div class="form-group">
-      <label for="pickup_contact_name">Pickup Contact Name:</label>
-      <input type="text" id="pickup_contact_name" name="pickup_contact_name">
-    </div>
-    <div class="form-group">
-      <label for="pickup_contact_phone">Pickup Contact Phone:</label>
-      <input type="text" id="pickup_contact_phone" name="pickup_contact_phone">
-    </div>
-    <div class="form-group">
-      <label for="item_type">Item Type:</label>
-      <input type="text" id="item_type" name="item_type">
-    </div>
-    <div class="form-group">
-      <label for="order_type">Order Type:</label>
-      <input type="text" id="order_type" name="order_type">
-    </div>
-    <button type="submit" class="btn">Submit</button>
-  </form>
-</div>
+      .form-group {
+        margin-bottom: 15px;
+      }
 
-</body>
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .btn:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <form id="orderForm">
+        <div class="form-group">
+          <label for="business_id">Business ID:</label>
+          <input type="text" id="business_id" name="business_id" />
+        </div>
+        <div class="form-group">
+          <label for="delivery_type">Delivery Type:</label>
+          <input type="text" id="delivery_type" name="delivery_type" />
+        </div>
+        <div class="form-group">
+          <label for="delivery_address_id">Delivery Address ID:</label>
+          <input
+            type="text"
+            id="delivery_address_id"
+            name="delivery_address_id"
+          />
+        </div>
+        <div class="form-group">
+          <label for="external_contact_name">External Contact Name:</label>
+          <input
+            type="text"
+            id="external_contact_name"
+            name="external_contact_name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="external_contact_phone">External Contact Phone:</label>
+          <input
+            type="text"
+            id="external_contact_phone"
+            name="external_contact_phone"
+          />
+        </div>
+        <div class="form-group">
+          <label for="pickup_address_id">Pickup Address ID:</label>
+          <input type="text" id="pickup_address_id" name="pickup_address_id" />
+        </div>
+        <div class="form-group">
+          <label for="pickup_contact_name">Pickup Contact Name:</label>
+          <input
+            type="text"
+            id="pickup_contact_name"
+            name="pickup_contact_name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="pickup_contact_phone">Pickup Contact Phone:</label>
+          <input
+            type="text"
+            id="pickup_contact_phone"
+            name="pickup_contact_phone"
+          />
+        </div>
+        <div class="form-group">
+          <label for="item_type">Item Type:</label>
+          <input type="text" id="item_type" name="item_type" />
+        </div>
+        <div class="form-group">
+          <label for="order_type">Order Type:</label>
+          <input type="text" id="order_type" name="order_type" />
+        </div>
+        <button type="submit" class="btn" id="submit">Submit</button>
+      </form>
+      <div id="order_id"></div>
+    </div>
+
+    <script>
+      let HOST = "https://api.test.esamudaay.com";
+      document
+        .getElementById("orderForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          let formData = {
+            business_id: document.getElementById("business_id").value,
+            delivery_type: document.getElementById("delivery_type").value,
+            order_items: [],
+            delivery_address_id: document.getElementById("delivery_address_id")
+              .value,
+            external_contact_info: {
+              name: document.getElementById("external_contact_name").value,
+              phone: document.getElementById("external_contact_phone").value,
+            },
+            pickup_address_id:
+              document.getElementById("pickup_address_id").value,
+            pickup_contact_info: {
+              name: document.getElementById("pickup_contact_name").value,
+              phone: document.getElementById("pickup_contact_phone").value,
+            },
+            item_type: document.getElementById("item_type").value,
+            payment_type: null,
+            order_type: document.getElementById("order_type").value,
+          };
+
+          let url = `${HOST}/api/v1/orders/`;
+          let headers = {
+            Authorization:
+              "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5NCwiaXNfYWN0aXZlIjp0cnVlLCJpc19zdXNwZW5kZWQiOmZhbHNlLCJwaG9uZSI6Iis5MTgxMjM0NjI2MTAiLCJ0aGlyZF9wYXJ0eV9pZCI6IjVkNzMwMzc2LTcyZWQtNDc4Yy04ZDVlLTFhM2E2YWVlOTgxNSIsInByb2ZpbGUiOnsicm9sZSI6IlBST1ZJREVSIiwic3VzcGVuZGVkIjpmYWxzZX0sImV4cCI6MTcxOTExODUxNiwib3JpZ19pYXQiOjE3MTEzNDI1MTZ9.OXpzs_6e5FMb_O52xee2TVpzCa8BOm-taBma1Hbm_qY",
+            "Content-Type": "application/json",
+          };
+
+          fetch(url, {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(formData),
+          })
+            .then((response) => response.json())
+            .then((jsonData) => {
+              document.getElementById('order_id').innerText = jsonData.order_id;
+              // Handle the response here, e.g., show a success message or redirect the user
+            })
+            .catch((error) => console.error("Error:", error));
+        });
+    </script>
+  </body>
 </html>
